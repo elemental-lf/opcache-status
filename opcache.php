@@ -319,6 +319,7 @@ if (isset($_GET['clear']) && $_GET['clear'] == 1) {
 <meta charset="utf-8">
 <html>
 <head>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.2/css/theme.default.min.css"/>
     <style>
         body {
             font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -495,6 +496,7 @@ if (isset($_GET['clear']) && $_GET['clear'] == 1) {
     </style>
     <script src="inc/d3-3.0.1.min.js"></script>
     <script src="inc/jquery-1.11.0.min.js"></script>
+    <script src="inc/jquery-2.0.5.tablesorter.min.js"></script>
     <script>
         var hidden = {};
         function toggleVisible(head, row) {
@@ -548,12 +550,16 @@ if (isset($_GET['clear']) && $_GET['clear'] == 1) {
                 <label for="tab-scripts">Scripts (<?php echo $dataModel->getScriptStatusCount(); ?>)</label>
                 <div class="content">
                     <table style="font-size:0.8em;">
+                        <thead>
                         <tr>
                             <th width="10%">Hits</th>
                             <th width="20%">Memory</th>
                             <th width="70%">Path</th>
                         </tr>
+                        </thead>
+                        <tbody>
                         <?php echo $dataModel->getScriptStatusRows(); ?>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -778,6 +784,8 @@ if (isset($_GET['clear']) && $_GET['clear'] == 1) {
                 if (e.keyCode == 27) handleVisualisationToggle(true);
 
             });
+
+            $('#tab-scripts').parent().find('.content').find('table').tablesorter();
 
         });
     </script>
