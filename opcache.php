@@ -76,7 +76,11 @@ class OpCacheDataModel
                         $v = number_format($v);
                     }
 
-                    $rows[] = "<tr><th>$k</th><td>$v</td></tr>\n";
+                    if ($key === 'opcache_statistics') {
+                        $rows[] = "<tr><th>$k</th><td>$v</td></tr>\n";
+                    } else {
+                        $rows[] = "<tr><th>$key: $k</th><td>$v</td></tr>\n";
+                    }
                 }
                 continue;
             }
@@ -323,7 +327,7 @@ if (isset($_GET['clear']) && $_GET['clear'] == 1) {
         }
 
         #container {
-            width: 1024px;
+            width: 80%;
             margin: auto;
             position: relative;
         }
